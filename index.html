@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#c62828">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="상하이 중국어">
+<title>상하이 여행 중국어 회화</title>
+<style>
+:root {
+  --red: #c62828;
+  --red-dark: #8e1f1f;
+  --gold: #e6a817;
+  --ink: #1c1e21;
+  --ink-2: #4a4f55;
+  --ink-3: #7c848c;
+  --line: #e6e8eb;
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --radius: 16px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+    "Malgun Gothic", "Noto Sans KR", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior-y: contain;
+}
+
+[hidden] { display: none !important; }
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* ---------- header ---------- */
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: calc(10px + var(--safe-top)) 12px 8px;
+  background: linear-gradient(180deg, #c62828 0%, #b32323 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .16);
+}
+
+.hdr-top { display: flex; align-items: center; gap: 8px; }
+
+.brand { display: flex; align-items: center; gap: 9px; min-width: 0; flex: 1; }
+
+.flag {
+  font-size: 22px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .3));
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sub {
+  margin: 1px 0 0;
+  font-size: 11px;
+  color: #ffd9d9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.num-btn {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 5px 9px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, .16);
+  font-size: 16px;
+  line-height: 1.05;
+  color: #fff;
+}
+.num-btn span { font-size: 9.5px; opacity: .9; letter-spacing: -.2px; }
+.num-btn:active { background: rgba(255, 255, 255, .3); }
+
+.search-wrap { position: relative; margin-top: 9px; }
+
+#search {
+  width: 100%;
+  padding: 10px 34px 10px 34px;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 16px; /* iOS에서 포커스 시 확대 방지 */
+  font-family: inherit;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .06);
+}
+#search::placeholder { color: #9aa1a8; font-size: 12.5px; }
+#search::-webkit-search-cancel-button { display: none; }
+
+.search-ico {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: .55;
+  pointer-events: none;
+}
+
+.clear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #eceef1;
+  color: #5d646b;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: center;
+}
+
+/* ---------- chips ---------- */
+.chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .17);
+  color: #ffe8e8;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.chip .cnt { font-size: 10.5px; opacity: .72; font-weight: 500; }
+.chip[aria-pressed="true"] {
+  background: #fff;
+  color: var(--red);
+}
+.chip[aria-pressed="true"] .cnt { opacity: .6; }
+
+/* ---------- list ---------- */
+main { padding: 12px 12px calc(28px + var(--safe-bottom)); }
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 3px 8px;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.list { display: flex; flex-direction: column; gap: 9px; }
+
+.card {
+  position: relative;
+  padding: 13px 14px 11px;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(16, 20, 24, .06), 0 4px 14px rgba(16, 20, 24, .045);
+}
+
+.card-ko {
+  display: block;
+  padding-right: 34px;
+  color: var(--ink-3);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -.2px;
+}
+
+.fav {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 17px;
+  line-height: 34px;
+  text-align: center;
+  color: #cfd4d9;
+  transition: transform .12s, color .12s;
+}
+.fav:active { transform: scale(.88); }
+.fav[aria-pressed="true"] { color: var(--gold); }
+
+.zh {
+  margin: 3px 0 2px;
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: .5px;
+  color: var(--ink);
+  word-break: break-word;
+}
+
+.py {
+  color: var(--red);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1px;
+}
+
+.kr {
+  margin-top: 2px;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.note {
+  margin-top: 7px;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: #fdf6e3;
+  color: #8a6a12;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.card-actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 9px 8px;
+  border-radius: 10px;
+  background: #f2f4f6;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.btn:active { background: #e6e9ec; }
+.btn.speak { background: #fdecec; color: var(--red); }
+.btn.speak:active { background: #fbdcdc; }
+.btn.show { background: #eef2ff; color: #3448a8; }
+.btn.show:active { background: #e0e6ff; }
+
+.empty {
+  padding: 46px 20px;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 14px;
+}
+.empty .big { font-size: 34px; display: block; margin-bottom: 10px; }
+.empty p { margin: 4px 0; }
+.empty .hint { font-size: 12px; color: #9aa1a8; }
+
+.foot {
+  padding: 4px 20px 18px;
+  text-align: center;
+  color: #a5acb3;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ---------- overlay / big card ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  background: rgba(12, 14, 16, .55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* 보여주기 카드: 밝은 바탕 + 아주 큰 중국어 */
+#bigcard { align-items: center; justify-content: center; padding: 0; background: #fff; }
+
+.big-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: calc(60px + var(--safe-top)) 20px calc(30px + var(--safe-bottom));
+  text-align: center;
+  background: #fff;
+}
+
+.big-close {
+  position: absolute;
+  top: calc(10px + var(--safe-top));
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eef0f2;
+  color: #4a4f55;
+  font-size: 17px;
+  line-height: 42px;
+  text-align: center;
+}
+
+.big-zh {
+  font-size: clamp(40px, 14vw, 96px);
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: 1px;
+  color: #111;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.big-py {
+  margin-top: 18px;
+  color: var(--red);
+  font-size: clamp(16px, 4.6vw, 24px);
+  font-weight: 700;
+}
+
+.big-ko {
+  margin-top: 10px;
+  color: #6b7178;
+  font-size: clamp(14px, 3.8vw, 19px);
+  font-weight: 600;
+}
+
+.big-inner.zoom .big-zh { font-size: clamp(52px, 19vw, 130px); }
+
+.big-actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(16px + var(--safe-bottom));
+  display: flex;
+  gap: 8px;
+  padding: 0 18px;
+}
+
+.big-actions .btn { padding: 13px 8px; font-size: 14px; background: #f1f3f5; }
+.big-actions .btn.speak { background: var(--red); color: #fff; }
+
+.tap-hint {
+  margin-top: 26px;
+  color: #b3b9bf;
+  font-size: 12px;
+}
+
+/* ---------- numbers sheet ---------- */
+#numModal { align-items: flex-end; }
+
+.sheet {
+  width: 100%;
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 20px 0 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 16px 11px;
+  border-bottom: 1px solid var(--line);
+}
+.sheet-head h2 { margin: 0; font-size: 16px; font-weight: 800; }
+.sheet-head .sub2 { font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
+
+.sheet-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eef0f2;
+  color: #4a4f55;
+  line-height: 32px;
+  text-align: center;
+}
+
+.sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 4px 14px calc(24px + var(--safe-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.num-group { margin-top: 14px; }
+.num-group h3 {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink-3);
+  letter-spacing: .2px;
+}
+
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+
+.num-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: 11px;
+  background: #f5f6f8;
+  text-align: left;
+}
+.num-item:active { background: #e9ebee; }
+.num-item .n {
+  flex: none;
+  min-width: 42px;
+  color: var(--ink-3);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.num-item .c { font-size: 19px; font-weight: 800; line-height: 1.1; }
+.num-item .p { font-size: 11px; color: var(--red); font-weight: 600; }
+.num-item .k { font-size: 11.5px; color: var(--ink-2); }
+
+.num-tip {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: #fdf6e3;
+  color: #8a6a12;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(26px + var(--safe-bottom));
+  transform: translateX(-50%) translateY(8px);
+  z-index: 90;
+  max-width: 88vw;
+  padding: 11px 16px;
+  border-radius: 12px;
+  background: rgba(24, 26, 29, .93);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+  pointer-events: none;
+}
+.toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (min-width: 620px) {
+  body { max-width: 760px; margin: 0 auto; background: #e9ebee; }
+  .hdr { border-radius: 0 0 18px 18px; }
+  .zh { font-size: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-top">
+    <div class="brand">
+      <span class="flag">🇨🇳</span>
+      <div>
+        <h1>상하이 여행 중국어</h1>
+        <p class="sub">인터넷 없이 열려요 · 화면을 보여주세요</p>
+      </div>
+    </div>
+    <button id="numBtn" class="num-btn" aria-label="숫자·단위 치트시트"><span aria-hidden="true">🔢</span><span>숫자</span></button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-ico" aria-hidden="true">🔍</span>
+    <input id="search" type="search" inputmode="search" enterkeyhint="search" autocomplete="off"
+      placeholder="한국어·병음·중국어 검색 (화장실 / duoshao / 多少钱)" aria-label="표현 검색">
+    <button id="clearBtn" class="clear" hidden aria-label="검색어 지우기">✕</button>
+  </div>
+  <nav id="chips" class="chips" aria-label="카테고리"></nav>
+</header>
+
+<main>
+  <div id="meta" class="meta"></div>
+  <div id="list" class="list"></div>
+  <div id="empty" class="empty" hidden>
+    <span class="big" aria-hidden="true">🧭</span>
+    <p id="emptyTitle">찾는 표현이 없어요</p>
+    <p class="hint" id="emptyHint"></p>
+  </div>
+</main>
+
+<footer class="foot">
+  중국어를 탭하면 크게 보여줄 수 있어요 · ☆ 를 누르면 자주 쓰는 표현에 담겨요<br>
+  소리는 기기의 중국어 음성(TTS)으로 읽어요 · 음성이 없어도 화면 보여주기로 쓸 수 있어요
+</footer>
+
+<!-- 보여주기: 크게 보여주는 카드 -->
+<div id="bigcard" class="overlay" hidden role="dialog" aria-modal="true" aria-label="크게 보여주기">
+  <div class="big-inner" id="bigInner">
+    <button id="bigClose" class="big-close" aria-label="닫기">✕</button>
+    <div class="big-zh" id="bigZh"></div>
+    <div class="big-py" id="bigPy"></div>
+    <div class="big-ko" id="bigKo"></div>
+    <div class="tap-hint">중국어를 탭하면 읽어 줘요</div>
+    <div class="big-actions">
+      <button id="bigSpeak" class="btn speak">🔊 읽어주기</button>
+      <button id="bigSize" class="btn">가 글자 크게</button>
+    </div>
+  </div>
+</div>
+
+<!-- 숫자·단위 치트시트 -->
+<div id="numModal" class="overlay" hidden role="dialog" aria-modal="true" aria-label="숫자와 단위">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>🔢 숫자 · 단위 치트시트</h2>
+        <div class="sub2">숫자 항목을 탭하면 중국어로 읽어 줘요</div>
+      </div>
+      <button id="numClose" class="sheet-close" aria-label="닫기">✕</button>
+    </div>
+    <div class="sheet-body" id="numBody"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script>
+/* 순수 로직 — 브라우저(window.PhraseLogic)와 node(module.exports) 양쪽에서 쓴다. */
+(function (root) {
+  'use strict';
+
+  var FAV_KEY = 'shq.favs.v1';
+  var SEARCH_KEYS = ['ko', 'zh', 'py', 'kr', 'note'];
+
+  function stripTones(s) {
+    var t = String(s == null ? '' : s);
+    if (t.normalize) t = t.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return t;
+  }
+
+  // 검색 비교용 정규화: 성조표시·대소문자·공백·구두점을 없앤다.
+  function normalize(s) {
+    return stripTones(s)
+      .toLowerCase()
+      .replace(/[\s\-_.,!?~·'"’”“:;()\[\]{}]/g, '');
+  }
+
+  function haystack(p) {
+    var parts = [];
+    for (var i = 0; i < SEARCH_KEYS.length; i++) parts.push(p[SEARCH_KEYS[i]] || '');
+    return normalize(parts.join(' '));
+  }
+
+  function searchPhrases(list, query) {
+    var q = String(query == null ? '' : query);
+    var nq = normalize(q);
+    if (!nq) return list.slice();
+    var tokens = q.trim().split(/\s+/).map(normalize).filter(Boolean);
+    return list.filter(function (p) {
+      var h = haystack(p);
+      if (h.indexOf(nq) !== -1) return true;
+      if (tokens.length > 1 && tokens.every(function (t) { return h.indexOf(t) !== -1; })) return true;
+      return false;
+    });
+  }
+
+  function inCategory(list, cat) {
+    if (!cat || cat === 'all' || cat === 'fav') return list.slice();
+    return list.filter(function (p) { return p.cat === cat; });
+  }
+
+  function byFavorites(list, favs) {
+    var set = {};
+    (favs || []).forEach(function (id) { set[id] = true; });
+    return list.filter(function (p) { return !!set[p.id]; });
+  }
+
+  function toggleFavorite(favs, id) {
+    var list = (favs || []).slice();
+    var i = list.indexOf(id);
+    if (i === -1) list.push(id);
+    else list.splice(i, 1);
+    return list;
+  }
+
+  function isFavorite(favs, id) {
+    return (favs || []).indexOf(id) !== -1;
+  }
+
+  function countByCategory(list) {
+    var out = { all: list.length };
+    list.forEach(function (p) { out[p.cat] = (out[p.cat] || 0) + 1; });
+    return out;
+  }
+
+  function readFavs(storage) {
+    if (!storage) return [];
+    try {
+      var raw = storage.getItem(FAV_KEY);
+      if (!raw) return [];
+      var parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter(function (x) { return typeof x === 'string'; });
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function writeFavs(storage, favs) {
+    if (!storage) return false;
+    try {
+      storage.setItem(FAV_KEY, JSON.stringify(favs || []));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // 화면에 그릴 목록을 만든다: 카테고리 → 즐겨찾기 → 검색 순.
+  function buildList(phrases, favs, cat, query) {
+    var base = inCategory(phrases, cat);
+    if (cat === 'fav') base = byFavorites(phrases, favs);
+    return searchPhrases(base, query);
+  }
+
+  function pickChineseVoice(voices) {
+    var list = voices || [];
+    for (var i = 0; i < list.length; i++) {
+      if (/^zh[-_]?CN/i.test(list[i].lang || '')) return list[i];
+    }
+    for (var j = 0; j < list.length; j++) {
+      if (/^zh/i.test(list[j].lang || '')) return list[j];
+    }
+    return null;
+  }
+
+  // TTS 가능 여부 판단 — 실패해도 앱은 '보여주기'로 계속 쓸 수 있어야 한다.
+  function ttsStatus(win) {
+    var w = win || {};
+    if (!('speechSynthesis' in w) || typeof w.SpeechSynthesisUtterance !== 'function') {
+      return { ok: false, reason: 'unsupported' };
+    }
+    var voices = [];
+    try { voices = w.speechSynthesis.getVoices() || []; } catch (e) { voices = []; }
+    var zh = pickChineseVoice(voices);
+    if (voices.length && !zh) return { ok: true, reason: 'no-zh-voice', voice: null };
+    return { ok: true, reason: zh ? 'zh-voice' : 'no-voice-list', voice: zh };
+  }
+
+  var api = {
+    FAV_KEY: FAV_KEY,
+    stripTones: stripTones,
+    normalize: normalize,
+    haystack: haystack,
+    searchPhrases: searchPhrases,
+    inCategory: inCategory,
+    byFavorites: byFavorites,
+    toggleFavorite: toggleFavorite,
+    isFavorite: isFavorite,
+    countByCategory: countByCategory,
+    readFavs: readFavs,
+    writeFavs: writeFavs,
+    buildList: buildList,
+    pickChineseVoice: pickChineseVoice,
+    ttsStatus: ttsStatus
+  };
+
+  root.PhraseLogic = api;
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+})(typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : this));
+
+</script>
+<script>
+window.PHRASE_DATA = {"meta":{"title":"상하이 여행 중국어 회화","trip":"상하이 (디즈니랜드·우전·상하이마라톤)","updated":"2026-11-19","version":"1.0.0"},"cats":[{"id":"all","emoji":"📚","name":"전체"},{"id":"fav","emoji":"⭐","name":"자주 쓰는"},{"id":"basic","emoji":"🔥","name":"필수 기본"},{"id":"pay","emoji":"💳","name":"결제 · 위챗/알리페이"},{"id":"move","emoji":"🚕","name":"택시 · 디디 · 지하철 · 공항"},{"id":"food","emoji":"🍜","name":"식당 · 마라샹궈 · 카페"},{"id":"fun","emoji":"🎢","name":"디즈니랜드 · 관광"},{"id":"run","emoji":"🏃","name":"마라톤 · 컨디션 · 약국"},{"id":"stay","emoji":"🏨","name":"호텔 · 쇼핑"}],"phrases":[{"id":"b01","cat":"basic","ko":"감사합니다","zh":"谢谢","py":"Xièxie","kr":"시에시에","note":"가볍게 '씨에씨에'라고 해도 통해요"},{"id":"b02","cat":"basic","ko":"정말 감사합니다","zh":"非常感谢","py":"Fēicháng gǎnxiè","kr":"페이창 간시에"},{"id":"b03","cat":"basic","ko":"죄송합니다","zh":"对不起","py":"Duìbuqǐ","kr":"두이부치"},{"id":"b04","cat":"basic","ko":"괜찮아요 / 됐어요","zh":"没关系","py":"Méi guānxi","kr":"메이 꽌시"},{"id":"b05","cat":"basic","ko":"네, 좋아요","zh":"好的","py":"Hǎo de","kr":"하오더"},{"id":"b06","cat":"basic","ko":"아니요, 괜찮아요","zh":"不用了","py":"Bú yòng le","kr":"부 용 러"},{"id":"b07","cat":"basic","ko":"잠시만요","zh":"请等一下","py":"Qǐng děng yíxià","kr":"칭 덩 이샤"},{"id":"b08","cat":"basic","ko":"저는 한국인입니다","zh":"我是韩国人","py":"Wǒ shì Hánguó rén","kr":"워 스 한궈 런"},{"id":"b09","cat":"basic","ko":"영어 하실 수 있어요?","zh":"你会说英语吗？","py":"Nǐ huì shuō Yīngyǔ ma?","kr":"니 후이 슈오 잉위 마"},{"id":"b10","cat":"basic","ko":"한국어 하시는 분 계세요?","zh":"有会说韩语的人吗？","py":"Yǒu huì shuō Hányǔ de rén ma?","kr":"요 후이 슈오 한위 더 런 마"},{"id":"b11","cat":"basic","ko":"화장실이 어디예요?","zh":"洗手间在哪里？","py":"Xǐshǒujiān zài nǎlǐ?","kr":"시서우젠 짜이 나리"},{"id":"b12","cat":"basic","ko":"도와주세요!","zh":"请帮帮我！","py":"Qǐng bāngbang wǒ!","kr":"칭 방방 워"},{"id":"b13","cat":"basic","ko":"못 알아들었어요","zh":"我没听懂","py":"Wǒ méi tīngdǒng","kr":"워 메이 팅둥"},{"id":"b14","cat":"basic","ko":"천천히 말해 주세요","zh":"请说慢一点","py":"Qǐng shuō màn yìdiǎn","kr":"칭 슈오 만 이디앤"},{"id":"b15","cat":"basic","ko":"이것 좀 봐 주세요","zh":"请看这个","py":"Qǐng kàn zhège","kr":"칭 칸 저거","note":"휴대폰 화면을 보여줄 때 같이 말하면 좋아요"},{"id":"b16","cat":"basic","ko":"종이에 써 주세요","zh":"请写下来","py":"Qǐng xiě xiàlái","kr":"칭 시에 시알라이"},{"id":"b17","cat":"basic","ko":"사진 찍어도 돼요?","zh":"可以拍照吗？","py":"Kěyǐ pāizhào ma?","kr":"커이 파이자오 마"},{"id":"p01","cat":"pay","ko":"얼마예요?","zh":"多少钱？","py":"Duōshao qián?","kr":"둬사오 치앤"},{"id":"p02","cat":"pay","ko":"너무 비싸요","zh":"太贵了","py":"Tài guì le","kr":"타이 구이 러"},{"id":"p03","cat":"pay","ko":"조금 깎아 주세요","zh":"便宜一点吧","py":"Piányi yìdiǎn ba","kr":"피앤이 이디앤 바"},{"id":"p04","cat":"pay","ko":"알리페이로 할게요","zh":"我用支付宝","py":"Wǒ yòng Zhīfùbǎo","kr":"워 용 즈푸바오"},{"id":"p05","cat":"pay","ko":"위챗페이로 할게요","zh":"我用微信支付","py":"Wǒ yòng Wēixìn zhīfù","kr":"워 용 웨이신 즈푸"},{"id":"p06","cat":"pay","ko":"QR 코드 스캔해 주세요","zh":"请扫一下二维码","py":"Qǐng sǎo yíxià èrwéimǎ","kr":"칭 사오 이샤 얼웨이마"},{"id":"p07","cat":"pay","ko":"카드로 돼요?","zh":"可以刷卡吗？","py":"Kěyǐ shuākǎ ma?","kr":"커이 슈아카 마"},{"id":"p08","cat":"pay","ko":"현금으로 낼게요","zh":"我付现金","py":"Wǒ fù xiànjīn","kr":"워 푸 시앤진"},{"id":"p09","cat":"pay","ko":"영수증 주세요","zh":"请给我收据","py":"Qǐng gěi wǒ shōujù","kr":"칭 게이 워 서우쥐"},{"id":"p10","cat":"pay","ko":"포장해 주세요","zh":"请打包","py":"Qǐng dǎbāo","kr":"칭 다바오","note":"남은 음식·테이크아웃 둘 다 이 말"},{"id":"p11","cat":"pay","ko":"봉투 하나 주세요","zh":"请给我一个袋子","py":"Qǐng gěi wǒ yí ge dàizi","kr":"칭 게이 워 이 거 다이즈"},{"id":"p12","cat":"pay","ko":"잔돈은 괜찮아요","zh":"不用找了","py":"Bú yòng zhǎo le","kr":"부 용 자오 러"},{"id":"p13","cat":"pay","ko":"할인 되나요?","zh":"有打折吗？","py":"Yǒu dǎzhé ma?","kr":"요 다저 마"},{"id":"m01","cat":"move","ko":"푸동공항 T1으로 가 주세요","zh":"请去浦东机场1号航站楼","py":"Qǐng qù Pǔdōng jīchǎng yī hào hángzhànlóu","kr":"칭 취 푸둥 지창 이 하오 항잔러우"},{"id":"m02","cat":"move","ko":"푸동공항 T2로 가 주세요","zh":"请去浦东机场2号航站楼","py":"Qǐng qù Pǔdōng jīchǎng èr hào hángzhànlóu","kr":"칭 취 푸둥 지창 얼 하오 항잔러우"},{"id":"m03","cat":"move","ko":"이 주소로 가 주세요","zh":"请去这个地址","py":"Qǐng qù zhège dìzhǐ","kr":"칭 취 저거 디즈","note":"지도 앱에 주소를 띄워 보여주면서"},{"id":"m04","cat":"move","ko":"난징둥루 하이랜드 호텔로 가 주세요","zh":"请去南京东路505号的海仑宾馆","py":"Qǐng qù Nánjīng Dōng Lù wǔbǎi líng wǔ hào de Hǎilún Bīnguǎn","kr":"칭 취 난징둥루 우바이 링 우 하오 더 하이룬 빈관","note":"정식 이름은 丽笙精选海仑宾馆 — '海仑宾馆'만 말해도 통해요"},{"id":"m05","cat":"move","ko":"우전(수향마을)으로 가 주세요","zh":"请去乌镇","py":"Qǐng qù Wūzhèn","kr":"칭 취 우전"},{"id":"m06","cat":"move","ko":"그랜드 센트럴 호텔로 가 주세요","zh":"请去九江路505号的上海大酒店","py":"Qǐng qù Jiǔjiāng Lù wǔbǎi líng wǔ hào de Shànghǎi Dà Jiǔdiàn","kr":"칭 취 지우지앙루 우바이 링 우 하오 더 상하이 다 지우디앤","note":"상하이 숙소"},{"id":"m07","cat":"move","ko":"여기서 세워 주세요","zh":"请在这里停车","py":"Qǐng zài zhèlǐ tíngchē","kr":"칭 짜이 저리 팅처"},{"id":"m08","cat":"move","ko":"여기서 내릴게요","zh":"我在这里下车","py":"Wǒ zài zhèlǐ xiàchē","kr":"워 짜이 저리 샤처"},{"id":"m09","cat":"move","ko":"트렁크 열어 주세요","zh":"请打开后备箱","py":"Qǐng dǎkāi hòubèixiāng","kr":"칭 다카이 허우베이샹"},{"id":"m10","cat":"move","ko":"미터기 켜 주세요","zh":"请打表","py":"Qǐng dǎbiǎo","kr":"칭 다비아오"},{"id":"m11","cat":"move","ko":"여기까지 얼마예요?","zh":"到这里多少钱？","py":"Dào zhèlǐ duōshao qián?","kr":"다오 저리 둬사오 치앤"},{"id":"m12","cat":"move","ko":"공항까지 몇 분 걸려요?","zh":"到机场要多少分钟？","py":"Dào jīchǎng yào duōshao fēnzhōng?","kr":"다오 지창 야오 둬사오 펀중"},{"id":"m13","cat":"move","ko":"지하철역이 어디예요?","zh":"地铁站在哪里？","py":"Dìtiě zhàn zài nǎlǐ?","kr":"디티에 잔 짜이 나리"},{"id":"m14","cat":"move","ko":"지하철 표는 어디서 사요?","zh":"地铁票在哪里买？","py":"Dìtiě piào zài nǎlǐ mǎi?","kr":"디티에 피아오 짜이 나리 마이"},{"id":"m15","cat":"move","ko":"자기부상열차는 어디서 타요?","zh":"磁悬浮列车在哪里坐？","py":"Cíxuánfú lièchē zài nǎlǐ zuò?","kr":"츠쉬안푸 리에처 짜이 나리 줘","note":"푸동공항 ↔ 룽양루, 약 8분"},{"id":"m16","cat":"move","ko":"20분만 기다려 주세요","zh":"请等我二十分钟","py":"Qǐng děng wǒ èrshí fēnzhōng","kr":"칭 덩 워 얼스 펀중"},{"id":"m17","cat":"move","ko":"짐 좀 들어 주세요","zh":"请帮我搬一下行李","py":"Qǐng bāng wǒ bān yíxià xíngli","kr":"칭 방 워 반 이샤 싱리"},{"id":"m18","cat":"move","ko":"디즈니랜드로 가 주세요","zh":"请去迪士尼乐园","py":"Qǐng qù Díshìní Lèyuán","kr":"칭 취 디스니 러위앤"},{"id":"m19","cat":"move","ko":"가장 가까운 지하철역까지 가 주세요","zh":"请去最近的地铁站","py":"Qǐng qù zuìjìn de dìtiě zhàn","kr":"칭 취 쭈이진 더 디티에 잔"},{"id":"m20","cat":"move","ko":"우전 통안객잔으로 가 주세요","zh":"请去乌镇通安客栈","py":"Qǐng qù Wūzhèn Tōng'ān Kèzhàn","kr":"칭 취 우전 통안 커잔","note":"우전 수향마을"},{"id":"f01","cat":"food","ko":"두 명이요","zh":"两位","py":"Liǎng wèi","kr":"리앙 웨이","note":"사람 수는 位(웨이)로 세요"},{"id":"f02","cat":"food","ko":"메뉴판 주세요","zh":"请给我菜单","py":"Qǐng gěi wǒ càidān","kr":"칭 게이 워 차이단"},{"id":"f03","cat":"food","ko":"추천 메뉴 있어요?","zh":"有什么推荐的？","py":"Yǒu shénme tuījiàn de?","kr":"요 션머 투이지앤 더"},{"id":"f04","cat":"food","ko":"이거 주세요","zh":"我要这个","py":"Wǒ yào zhège","kr":"워 야오 저거"},{"id":"f05","cat":"food","ko":"안 맵게 해 주세요","zh":"请做不辣的","py":"Qǐng zuò bú là de","kr":"칭 줘 부라 더"},{"id":"f06","cat":"food","ko":"약간만 맵게 해 주세요","zh":"微辣","py":"Wēi là","kr":"웨이 라","note":"마라샹궈 주문할 때 이 한 마디"},{"id":"f07","cat":"food","ko":"얼얼한 맛은 적게","zh":"少麻","py":"Shǎo má","kr":"샤오 마","note":"혀가 얼얼한 마(麻) 성분을 줄여 달라"},{"id":"f08","cat":"food","ko":"고수 빼 주세요","zh":"不要香菜","py":"Bú yào xiāngcài","kr":"부 야오 시앙차이"},{"id":"f09","cat":"food","ko":"기름 적게 해 주세요","zh":"少放油","py":"Shǎo fàng yóu","kr":"샤오 팡 요우"},{"id":"f10","cat":"food","ko":"짜지 않게 해 주세요","zh":"少放盐","py":"Shǎo fàng yán","kr":"샤오 팡 옌"},{"id":"f11","cat":"food","ko":"물 좀 주세요","zh":"请给我水","py":"Qǐng gěi wǒ shuǐ","kr":"칭 게이 워 슈이"},{"id":"f12","cat":"food","ko":"계산할게요","zh":"请买单","py":"Qǐng mǎidān","kr":"칭 마이단","note":"계산대에서 结账(지에장)라고 해도 같은 말이에요"},{"id":"f13","cat":"food","ko":"너무 맛있어요!","zh":"太好吃了！","py":"Tài hǎochī le!","kr":"타이 하오츠 러"},{"id":"f14","cat":"food","ko":"이게 뭐예요?","zh":"这是什么？","py":"Zhè shì shénme?","kr":"저 스 션머"},{"id":"f15","cat":"food","ko":"숟가락 주세요","zh":"请给我勺子","py":"Qǐng gěi wǒ sháozi","kr":"칭 게이 워 샤오즈"},{"id":"f16","cat":"food","ko":"젓가락 주세요","zh":"请给我筷子","py":"Qǐng gěi wǒ kuàizi","kr":"칭 게이 워 콰이즈"},{"id":"f17","cat":"food","ko":"땅콩 알레르기가 있어요","zh":"我对花生过敏","py":"Wǒ duì huāshēng guòmǐn","kr":"워 두이 화셩 궈민"},{"id":"f18","cat":"food","ko":"맥주 한 병 주세요","zh":"请给我一瓶啤酒","py":"Qǐng gěi wǒ yì píng píjiǔ","kr":"칭 게이 워 이 핑 피지우"},{"id":"f19","cat":"food","ko":"채식 메뉴 있어요?","zh":"有素菜吗？","py":"Yǒu sùcài ma?","kr":"요 수차이 마"},{"id":"f20","cat":"food","ko":"너무 매워요","zh":"太辣了","py":"Tài là le","kr":"타이 라 러"},{"id":"f21","cat":"food","ko":"여기 앉아도 돼요?","zh":"可以坐这里吗？","py":"Kěyǐ zuò zhèlǐ ma?","kr":"커이 줘 저리 마"},{"id":"f22","cat":"food","ko":"아이스 아메리카노 한 잔 주세요","zh":"我要一杯冰美式","py":"Wǒ yào yì bēi bīng měishì","kr":"워 야오 이 베이 빙 메이스"},{"id":"f23","cat":"food","ko":"디카페인 커피 있어요?","zh":"有低因咖啡吗？","py":"Yǒu dīyīn kāfēi ma?","kr":"요 디인 카페이 마"},{"id":"g01","cat":"fun","ko":"입구가 어디예요?","zh":"入口在哪里？","py":"Rùkǒu zài nǎlǐ?","kr":"루커우 짜이 나리"},{"id":"g02","cat":"fun","ko":"표 두 장 주세요","zh":"请给我两张票","py":"Qǐng gěi wǒ liǎng zhāng piào","kr":"칭 게이 워 리앙 장 피아오"},{"id":"g03","cat":"fun","ko":"사진 좀 찍어 주세요","zh":"请帮我拍张照片","py":"Qǐng bāng wǒ pāi zhāng zhàopiàn","kr":"칭 방 워 파이 장 자오피앤"},{"id":"g04","cat":"fun","ko":"같이 사진 찍어도 돼요?","zh":"可以一起拍照吗？","py":"Kěyǐ yìqǐ pāizhào ma?","kr":"커이 이치 파이자오 마"},{"id":"g05","cat":"fun","ko":"몇 시에 끝나요?","zh":"几点结束？","py":"Jǐ diǎn jiéshù?","kr":"지 디앤 지에슈"},{"id":"g06","cat":"fun","ko":"몇 시에 문 닫아요?","zh":"几点关门？","py":"Jǐ diǎn guānmén?","kr":"지 디앤 꽌먼"},{"id":"g07","cat":"fun","ko":"줄 끝이 여기예요?","zh":"队尾在这里吗？","py":"Duìwěi zài zhèlǐ ma?","kr":"두이웨이 짜이 저리 마"},{"id":"g08","cat":"fun","ko":"이거 얼마나 기다려요?","zh":"这个要等多久？","py":"Zhège yào děng duō jiǔ?","kr":"저거 야오 덩 둬 지우"},{"id":"g09","cat":"fun","ko":"오늘 이거 운영해요?","zh":"今天这个项目开放吗？","py":"Jīntiān zhège xiàngmù kāifàng ma?","kr":"진티앤 저거 시앙무 카이팡 마"},{"id":"g10","cat":"fun","ko":"가장 가까운 화장실이 어디예요?","zh":"最近的洗手间在哪里？","py":"Zuìjìn de xǐshǒujiān zài nǎlǐ?","kr":"쭈이진 더 시서우젠 짜이 나리"},{"id":"g11","cat":"fun","ko":"지도 있어요?","zh":"有地图吗？","py":"Yǒu dìtú ma?","kr":"요 디투 마"},{"id":"g12","cat":"fun","ko":"위챗으로 사진 보내 주세요","zh":"用微信发给我吧","py":"Yòng Wēixìn fā gěi wǒ ba","kr":"용 웨이신 파 게이 워 바"},{"id":"g13","cat":"fun","ko":"표는 어디서 사요?","zh":"票在哪里买？","py":"Piào zài nǎlǐ mǎi?","kr":"피아오 짜이 나리 마이"},{"id":"g14","cat":"fun","ko":"입장 시간이 몇 시예요?","zh":"入场时间是几点？","py":"Rùchǎng shíjiān shì jǐ diǎn?","kr":"루창 스지앤 스 지 디앤"},{"id":"g15","cat":"fun","ko":"짐 보관소 있어요?","zh":"有寄存处吗？","py":"Yǒu jìcún chù ma?","kr":"요 지춘 추 마"},{"id":"r01","cat":"run","ko":"상하이 마라톤 출발점이 어디예요?","zh":"上海马拉松起点在哪里？","py":"Shànghǎi mǎlāsōng qǐdiǎn zài nǎlǐ?","kr":"상하이 마라쑹 치디앤 짜이 나리"},{"id":"r02","cat":"run","ko":"짐 보관소가 어디예요?","zh":"存包处在哪里？","py":"Cúnbāo chù zài nǎlǐ?","kr":"춘바오 추 짜이 나리"},{"id":"r03","cat":"run","ko":"배번호는 어디서 받아요?","zh":"号码布在哪里领？","py":"Hàomǎbù zài nǎlǐ lǐng?","kr":"하오마부 짜이 나리 링"},{"id":"r04","cat":"run","ko":"이게 제 배번호예요","zh":"这是我的号码布","py":"Zhè shì wǒ de hàomǎbù","kr":"저 스 워 더 하오마부"},{"id":"r05","cat":"run","ko":"파스 있어요?","zh":"有膏药吗？","py":"Yǒu gāoyao ma?","kr":"요 가오야오 마"},{"id":"r06","cat":"run","ko":"반창고 있어요?","zh":"有创可贴吗？","py":"Yǒu chuāngkětiē ma?","kr":"요 촹커티에 마"},{"id":"r07","cat":"run","ko":"배가 아파요","zh":"我肚子疼","py":"Wǒ dùzi téng","kr":"워 두즈 텅"},{"id":"r08","cat":"run","ko":"머리가 아파요","zh":"我头疼","py":"Wǒ tóu téng","kr":"워 토우 텅"},{"id":"r09","cat":"run","ko":"다리가 아파요","zh":"我腿疼","py":"Wǒ tuǐ téng","kr":"워 투이 텅"},{"id":"r10","cat":"run","ko":"감기약 있어요?","zh":"有感冒药吗？","py":"Yǒu gǎnmào yào ma?","kr":"요 간마오 야오 마"},{"id":"r11","cat":"run","ko":"소화제 있어요?","zh":"有消化药吗？","py":"Yǒu xiāohuà yào ma?","kr":"요 시아오화 야오 마"},{"id":"r12","cat":"run","ko":"이 약 어떻게 먹어요?","zh":"这个药怎么吃？","py":"Zhège yào zěnme chī?","kr":"저거 야오 전머 츠"},{"id":"r13","cat":"run","ko":"병원이 어디예요?","zh":"医院在哪里？","py":"Yīyuàn zài nǎlǐ?","kr":"이위앤 짜이 나리"},{"id":"r14","cat":"run","ko":"구급차 불러 주세요","zh":"请叫救护车","py":"Qǐng jiào jiùhùchē","kr":"칭 지아오 지우후처"},{"id":"r15","cat":"run","ko":"근육이 땡겼어요","zh":"我肌肉拉伤了","py":"Wǒ jīròu lāshāng le","kr":"워 지로우 라샹 러"},{"id":"r16","cat":"run","ko":"따뜻한 물 한 잔 주세요","zh":"请给我一杯热水","py":"Qǐng gěi wǒ yì bēi rèshuǐ","kr":"칭 게이 워 이 베이 러슈이"},{"id":"s01","cat":"stay","ko":"체크인 할게요","zh":"我要办理入住","py":"Wǒ yào bànlǐ rùzhù","kr":"워 야오 반리 루주"},{"id":"s02","cat":"stay","ko":"예약했어요","zh":"我有预订","py":"Wǒ yǒu yùdìng","kr":"워 요 위딩","note":"예약자 이름은 여권을 보여주면 돼요"},{"id":"s03","cat":"stay","ko":"짐 좀 맡아 주실 수 있어요?","zh":"可以寄存行李吗？","py":"Kěyǐ jìcún xíngli ma?","kr":"커이 지춘 싱리 마"},{"id":"s04","cat":"stay","ko":"와이파이 비밀번호가 뭐예요?","zh":"无线网密码是多少？","py":"Wúxiànwǎng mìmǎ shì duōshao?","kr":"우시앤왕 미마 스 둬사오"},{"id":"s05","cat":"stay","ko":"방 청소해 주세요","zh":"请打扫一下房间","py":"Qǐng dǎsǎo yíxià fángjiān","kr":"칭 다사오 이샤 팡지앤"},{"id":"s06","cat":"stay","ko":"조식은 몇 시예요?","zh":"早餐几点开始？","py":"Zǎocān jǐ diǎn kāishǐ?","kr":"자오찬 지 디앤 카이스"},{"id":"s07","cat":"stay","ko":"수건 더 주세요","zh":"请再给我一条毛巾","py":"Qǐng zài gěi wǒ yì tiáo máojīn","kr":"칭 짜이 게이 워 이 티아오 마오진"},{"id":"s08","cat":"stay","ko":"체크아웃 할게요","zh":"我要退房","py":"Wǒ yào tuìfáng","kr":"워 야오 투이팡"},{"id":"s09","cat":"stay","ko":"택스 프리 되나요?","zh":"可以退税吗？","py":"Kěyǐ tuìshuì ma?","kr":"커이 투이슈이 마"},{"id":"s10","cat":"stay","ko":"이거 새 걸로 주세요","zh":"请给我一个新的","py":"Qǐng gěi wǒ yí ge xīn de","kr":"칭 게이 워 이 거 신 더"},{"id":"s11","cat":"stay","ko":"교환 되나요?","zh":"可以换货吗？","py":"Kěyǐ huànhuò ma?","kr":"커이 환훠 마"},{"id":"s12","cat":"stay","ko":"환불 되나요?","zh":"可以退货吗？","py":"Kěyǐ tuìhuò ma?","kr":"커이 투이훠 마"},{"id":"s13","cat":"stay","ko":"더 큰 사이즈 있어요?","zh":"有大一号的吗？","py":"Yǒu dà yī hào de ma?","kr":"요 다 이 하오 더 마"},{"id":"s14","cat":"stay","ko":"입어봐도 돼요?","zh":"可以试穿吗？","py":"Kěyǐ shìchuān ma?","kr":"커이 스촨 마"},{"id":"s15","cat":"stay","ko":"면세점이 어디예요?","zh":"免税店在哪里？","py":"Miǎnshuìdiàn zài nǎlǐ?","kr":"미앤슈이디앤 짜이 나리"},{"id":"s16","cat":"stay","ko":"방을 바꿀 수 있어요?","zh":"可以换房间吗？","py":"Kěyǐ huàn fángjiān ma?","kr":"커이 환 팡지앤 마"},{"id":"s17","cat":"stay","ko":"에어컨이 안 돼요","zh":"空调不好用","py":"Kōngtiáo bù hǎoyòng","kr":"쿵티아오 부 하오용"},{"id":"s18","cat":"stay","ko":"물 두 병 더 주세요","zh":"请再给我两瓶水","py":"Qǐng zài gěi wǒ liǎng píng shuǐ","kr":"칭 짜이 게이 워 리앙 핑 슈이"}],"numbers":[{"group":"숫자 1~10","items":[{"n":"1","zh":"一","py":"yī","kr":"이"},{"n":"2","zh":"二","py":"èr","kr":"얼"},{"n":"3","zh":"三","py":"sān","kr":"싼"},{"n":"4","zh":"四","py":"sì","kr":"쓰"},{"n":"5","zh":"五","py":"wǔ","kr":"우"},{"n":"6","zh":"六","py":"liù","kr":"리우"},{"n":"7","zh":"七","py":"qī","kr":"치"},{"n":"8","zh":"八","py":"bā","kr":"바"},{"n":"9","zh":"九","py":"jiǔ","kr":"지우"},{"n":"10","zh":"十","py":"shí","kr":"스"}]},{"group":"큰 수","items":[{"n":"11","zh":"十一","py":"shíyī","kr":"스이"},{"n":"20","zh":"二十","py":"èrshí","kr":"얼스"},{"n":"30","zh":"三十","py":"sānshí","kr":"싼스"},{"n":"50","zh":"五十","py":"wǔshí","kr":"우스"},{"n":"100","zh":"一百","py":"yìbǎi","kr":"이바이"},{"n":"200","zh":"两百","py":"liǎngbǎi","kr":"리앙바이"},{"n":"1,000","zh":"一千","py":"yìqiān","kr":"이치앤"},{"n":"10,000","zh":"一万","py":"yíwàn","kr":"이완"}]},{"group":"돈 · 단위","items":[{"n":"위안(元)","zh":"元","py":"yuán","kr":"위앤"},{"n":"콰이(块)","zh":"块","py":"kuài","kr":"콰이","memo":"가게에서 가격 말할 땐 거의 块"},{"n":"반(0.5)","zh":"半","py":"bàn","kr":"반"},{"n":"두 개","zh":"两个","py":"liǎng ge","kr":"리앙 거"},{"n":"한 병","zh":"一瓶","py":"yì píng","kr":"이 핑"},{"n":"한 잔","zh":"一杯","py":"yì bēi","kr":"이 베이"}]},{"group":"가격 읽기 예시","items":[{"n":"12元","zh":"十二元","py":"shí'èr yuán","kr":"스얼 위앤"},{"n":"38块","zh":"三十八块","py":"sānshíbā kuài","kr":"싼스바 콰이"},{"n":"120元","zh":"一百二十块","py":"yìbǎi èrshí kuài","kr":"이바이 얼스 콰이"},{"n":"1,580元","zh":"一千五百八十块","py":"yìqiān wǔbǎi bāshí kuài","kr":"이치앤 우바이 바스 콰이"}]}]};
+</script>
+<script>
+/* 상하이 여행 중국어 — UI (외부 요청 없음) */
+(function () {
+  'use strict';
+
+  var L = window.PhraseLogic;
+  var DATA = window.PHRASE_DATA || { phrases: [], cats: [], numbers: [] };
+  var phrases = DATA.phrases || [];
+  var cats = DATA.cats || [];
+  var numGroups = DATA.numbers || [];
+
+  function safeStorage() {
+    try {
+      var k = '__shq_probe__';
+      window.localStorage.setItem(k, '1');
+      window.localStorage.removeItem(k);
+      return window.localStorage;
+    } catch (e) {
+      // file:// 등에서 localStorage가 막혀도 이번 실행 동안은 똑같이 동작하게
+      var mem = {};
+      return {
+        getItem: function (key) { return Object.prototype.hasOwnProperty.call(mem, key) ? mem[key] : null; },
+        setItem: function (key, val) { mem[key] = String(val); },
+        removeItem: function (key) { delete mem[key]; }
+      };
+    }
+  }
+
+  var store = safeStorage();
+  var state = { q: '', cat: 'all', favs: L.readFavs(store), bigId: null };
+
+  var els = {
+    search: document.getElementById('search'),
+    clear: document.getElementById('clearBtn'),
+    chips: document.getElementById('chips'),
+    list: document.getElementById('list'),
+    meta: document.getElementById('meta'),
+    empty: document.getElementById('empty'),
+    emptyTitle: document.getElementById('emptyTitle'),
+    emptyHint: document.getElementById('emptyHint'),
+    big: document.getElementById('bigcard'),
+    bigZh: document.getElementById('bigZh'),
+    bigPy: document.getElementById('bigPy'),
+    bigKo: document.getElementById('bigKo'),
+    bigSpeak: document.getElementById('bigSpeak'),
+    bigSize: document.getElementById('bigSize'),
+    bigInner: document.getElementById('bigInner'),
+    bigClose: document.getElementById('bigClose'),
+    num: document.getElementById('numModal'),
+    numBody: document.getElementById('numBody'),
+    numBtn: document.getElementById('numBtn'),
+    numClose: document.getElementById('numClose'),
+    toast: document.getElementById('toast')
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  var toastTimer = null;
+  function toast(msg, ms) {
+    if (!els.toast) return;
+    els.toast.textContent = msg;
+    els.toast.hidden = false;
+    // reflow so the transition runs again
+    void els.toast.offsetWidth;
+    els.toast.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      els.toast.classList.remove('on');
+      setTimeout(function () { els.toast.hidden = true; }, 220);
+    }, ms || 2600);
+  }
+
+  /* ---------------- chips ---------------- */
+  function renderChips() {
+    var counts = L.countByCategory(phrases);
+    var favCount = L.byFavorites(phrases, state.favs).length;
+    var html = '';
+    cats.forEach(function (c) {
+      var n = c.id === 'all' ? phrases.length : (c.id === 'fav' ? favCount : (counts[c.id] || 0));
+      var on = state.cat === c.id ? 'true' : 'false';
+      html += '<button class="chip" data-cat="' + esc(c.id) + '" aria-pressed="' + on + '">' +
+        '<span>' + esc(c.emoji) + '</span><span>' + esc(c.name) + '</span>' +
+        '<span class="cnt">' + n + '</span></button>';
+    });
+    els.chips.innerHTML = html;
+  }
+
+  /* ---------------- list ---------------- */
+  function phraseCard(p) {
+    var fav = L.isFavorite(state.favs, p.id);
+    return '<article class="card" data-id="' + esc(p.id) + '">' +
+      '<span class="card-ko">' + esc(p.ko) + '</span>' +
+      '<button class="fav" data-act="fav" aria-pressed="' + (fav ? 'true' : 'false') + '" ' +
+      'aria-label="자주 쓰는 표현에 담기">' + (fav ? '★' : '☆') + '</button>' +
+      '<div class="zh" data-act="show">' + esc(p.zh) + '</div>' +
+      '<div class="py">' + esc(p.py) + '</div>' +
+      '<div class="kr">' + esc(p.kr) + '</div>' +
+      (p.note ? '<div class="note">💡 ' + esc(p.note) + '</div>' : '') +
+      '<div class="card-actions">' +
+      '<button class="btn speak" data-act="speak">🔊 말하기</button>' +
+      '<button class="btn show" data-act="show">📺 보여주기</button>' +
+      '</div></article>';
+  }
+
+  function render() {
+    var items = L.buildList(phrases, state.favs, state.cat, state.q);
+    els.list.innerHTML = items.map(phraseCard).join('');
+    var searching = !!state.q.trim();
+    els.meta.innerHTML = '<span>' +
+      (searching ? ('검색 결과 <b>' + items.length + '</b>개') : ('표현 <b>' + items.length + '</b>개')) +
+      '</span><span>⭐ ' + L.byFavorites(phrases, state.favs).length + '개 담김</span>';
+
+    if (!items.length) {
+      els.empty.hidden = false;
+      if (state.cat === 'fav' && !searching) {
+        els.emptyTitle.textContent = '아직 담은 표현이 없어요';
+        els.emptyHint.textContent = '카드 오른쪽 ☆ 를 눌러두면 여기에 모여요.';
+      } else {
+        els.emptyTitle.textContent = '찾는 표현이 없어요';
+        els.emptyHint.textContent = '한국어 · 병음 · 중국어 어느 쪽으로도 검색돼요. 예: 화장실, duoshao, 多少钱';
+      }
+    } else {
+      els.empty.hidden = true;
+    }
+    els.clear.hidden = !searching;
+  }
+
+  function renderAll() {
+    renderChips();
+    render();
+  }
+
+  /* ---------------- TTS ---------------- */
+  var voiceWarned = false;
+  var voicesLoaded = false;
+
+  function currentVoice() {
+    var synth = window.speechSynthesis;
+    if (!synth) return null;
+    var voices = [];
+    try { voices = synth.getVoices() || []; } catch (e) { voices = []; }
+    if (voices.length) voicesLoaded = true;
+    return L.pickChineseVoice(voices);
+  }
+
+  var speakSeq = 0;
+
+  function speak(text) {
+    if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') {
+      toast('이 브라우저는 읽어주기를 지원하지 않아요. 화면을 보여주세요.');
+      return false;
+    }
+    var u = new window.SpeechSynthesisUtterance(String(text || ''));
+    u.lang = 'zh-CN';
+    u.rate = 0.82;
+    u.pitch = 1;
+    var v = currentVoice();
+    if (v) u.voice = v;
+    var seq = ++speakSeq;
+    try {
+      window.speechSynthesis.cancel();
+      // iOS는 cancel 직후 같은 틱의 speak를 삼키는 경우가 있어 살짝 띄운다
+      setTimeout(function () {
+        if (seq !== speakSeq) return;
+        try { window.speechSynthesis.speak(u); } catch (e) { /* 무시 */ }
+      }, 60);
+    } catch (e) {
+      toast('음성을 재생하지 못했어요.');
+      return false;
+    }
+    if (!v && !voiceWarned) {
+      voiceWarned = true;
+      toast('중국어 음성이 없어 기본 음성으로 읽어요. 화면 보여주기를 함께 쓰세요.', 3200);
+    }
+    return true;
+  }
+
+  if ('speechSynthesis' in window && typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
+    window.speechSynthesis.onvoiceschanged = function () {
+      voicesLoaded = true;
+      currentVoice();
+    };
+  }
+
+  /* ---------------- big card ---------------- */
+  function byId(id) {
+    for (var i = 0; i < phrases.length; i++) if (phrases[i].id === id) return phrases[i];
+    return null;
+  }
+
+  function openBig(id) {
+    var p = byId(id);
+    if (!p) return;
+    state.bigId = id;
+    els.bigZh.textContent = p.zh;
+    els.bigPy.textContent = p.py;
+    els.bigKo.textContent = p.ko + '  ·  ' + p.kr;
+    els.bigInner.classList.remove('zoom');
+    els.big.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    try { history.pushState({ shq: 'big' }, ''); } catch (e) { /* file:// */ }
+  }
+
+  function hideBig() {
+    if (els.big.hidden) return;
+    els.big.hidden = true;
+    state.bigId = null;
+    document.documentElement.style.overflow = '';
+  }
+
+  function closeBig() {
+    var wasOpen = !els.big.hidden;
+    hideBig();
+    if (wasOpen) {
+      try {
+        if (history.state && history.state.shq) history.back();
+      } catch (e) { /* ignore */ }
+    }
+  }
+
+  /* ---------------- numbers ---------------- */
+  function renderNumbers() {
+    var html = '';
+    numGroups.forEach(function (g) {
+      html += '<section class="num-group"><h3>' + esc(g.group) + '</h3><div class="num-grid">';
+      (g.items || []).forEach(function (it) {
+        html += '<button class="num-item" data-zh="' + esc(it.zh) + '">' +
+          '<span class="n">' + esc(it.n) + '</span>' +
+          '<span><span class="c">' + esc(it.zh) + '</span> ' +
+          '<span class="p">' + esc(it.py) + '</span><br>' +
+          '<span class="k">' + esc(it.kr) + (it.memo ? ' · ' + esc(it.memo) : '') + '</span></span>' +
+          '</button>';
+      });
+      html += '</div></section>';
+    });
+    html += '<div class="num-tip">가게에서는 보통 <b>块(콰이)</b>로 말해요. 예: 38块 = 싼스바 콰이. ' +
+      '숫자를 탭하면 중국어로 읽어 줘요.</div>';
+    els.numBody.innerHTML = html;
+  }
+
+  function openNumbers() {
+    els.num.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    try { history.pushState({ shq: 'num' }, ''); } catch (e) { /* ignore */ }
+  }
+
+  function hideNumbers() {
+    if (els.num.hidden) return;
+    els.num.hidden = true;
+    if (els.big.hidden) document.documentElement.style.overflow = '';
+  }
+
+  function closeNumbers() {
+    var wasOpen = !els.num.hidden;
+    hideNumbers();
+    if (wasOpen) {
+      try { if (history.state && history.state.shq) history.back(); } catch (e) { /* ignore */ }
+    }
+  }
+
+  /* ---------------- events ---------------- */
+  function onSearch() {
+    state.q = els.search.value || '';
+    render();
+    els.search.focus({ preventScroll: true });
+  }
+
+  els.search.addEventListener('input', onSearch);
+  els.search.addEventListener('search', onSearch);
+
+  els.clear.addEventListener('click', function () {
+    els.search.value = '';
+    state.q = '';
+    render();
+    els.search.focus({ preventScroll: true });
+  });
+
+  els.chips.addEventListener('click', function (ev) {
+    var chip = ev.target.closest('.chip');
+    if (!chip) return;
+    state.cat = chip.getAttribute('data-cat');
+    renderChips();
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  els.list.addEventListener('click', function (ev) {
+    var card = ev.target.closest('.card');
+    if (!card) return;
+    var id = card.getAttribute('data-id');
+    var actEl = ev.target.closest('[data-act]');
+    var act = actEl ? actEl.getAttribute('data-act') : null;
+
+    if (act === 'fav') {
+      state.favs = L.toggleFavorite(state.favs, id);
+      L.writeFavs(store, state.favs);
+      var on = L.isFavorite(state.favs, id);
+      actEl.setAttribute('aria-pressed', on ? 'true' : 'false');
+      actEl.textContent = on ? '★' : '☆';
+      renderChips();
+      if (state.cat === 'fav' && !on) render();
+      else els.meta.innerHTML = '<span>표현 <b>' + L.buildList(phrases, state.favs, state.cat, state.q).length +
+        '</b>개</span><span>⭐ ' + L.byFavorites(phrases, state.favs).length + '개 담김</span>';
+      toast(on ? '⭐ 자주 쓰는 표현에 담았어요' : '⭐ 에서 뺐어요', 1500);
+      return;
+    }
+    if (act === 'speak') {
+      var p1 = byId(id);
+      if (p1) speak(p1.zh);
+      return;
+    }
+    if (act === 'show') {
+      openBig(id);
+      return;
+    }
+  });
+
+  els.bigClose.addEventListener('click', closeBig);
+  els.big.addEventListener('click', function (ev) {
+    if (ev.target === els.big) closeBig();
+  });
+  els.bigSpeak.addEventListener('click', function () {
+    if (state.bigId) {
+      var p = byId(state.bigId);
+      if (p) speak(p.zh);
+    }
+  });
+  els.bigSize.addEventListener('click', function () {
+    els.bigInner.classList.toggle('zoom');
+    var z = els.bigInner.classList.contains('zoom');
+    els.bigSize.textContent = z ? '가 글자 원래대로' : '가 글자 크게';
+  });
+  els.bigZh.addEventListener('click', function () {
+    if (state.bigId) {
+      var p = byId(state.bigId);
+      if (p) speak(p.zh);
+    }
+  });
+
+  els.numBtn.addEventListener('click', openNumbers);
+  els.numClose.addEventListener('click', closeNumbers);
+  els.num.addEventListener('click', function (ev) {
+    if (ev.target === els.num) closeNumbers();
+  });
+  els.numBody.addEventListener('click', function (ev) {
+    var item = ev.target.closest('.num-item');
+    if (item) speak(item.getAttribute('data-zh'));
+  });
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Escape') return;
+    if (!els.big.hidden) closeBig();
+    else if (!els.num.hidden) closeNumbers();
+  });
+
+  window.addEventListener('popstate', function () {
+    if (!els.big.hidden) hideBig();
+    if (!els.num.hidden) hideNumbers();
+    document.documentElement.style.overflow = '';
+  });
+
+  /* ---------------- start ---------------- */
+  renderAll();
+  renderNumbers();
+
+  window.__shq = {
+    state: state,
+    els: els,
+    render: render,
+    renderAll: renderAll,
+    openBig: openBig,
+    closeBig: closeBig,
+    openNumbers: openNumbers,
+    closeNumbers: closeNumbers,
+    speak: speak,
+    toast: toast,
+    logic: L,
+    data: DATA
+  };
+})();
+
+</script>
+<script>
+(function(){
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+})();
+</script>
+</body>
+</html>
